@@ -54,6 +54,7 @@ class MenuPrincipal {
         var usuario by remember { mutableStateOf("") }
         var contraseña by remember { mutableStateOf("") }
         var contraseñaVisibilidad by remember { mutableStateOf(false) }
+        var colorTexto by remember { mutableStateOf(Color.White) }
         Box(
             modifier = with (Modifier){
                 fillMaxSize()
@@ -159,8 +160,11 @@ class MenuPrincipal {
                     .fillMaxWidth()
                     .padding(), horizontalArrangement = Arrangement.Center) {
                     Text(text = "Terminos de Uso",
-                        modifier =  Modifier.padding(0.dp,60.dp,0.dp,13.dp)
-                            .clickable {  },
+                        modifier = Modifier
+                            .padding(0.dp, 60.dp, 0.dp, 13.dp)
+                            .clickable(
+                                onClick = {colorTexto = Color.Green}
+                            ),
                         color = Color.White)
                 }
             }
