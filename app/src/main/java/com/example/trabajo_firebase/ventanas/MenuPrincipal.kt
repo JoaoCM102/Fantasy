@@ -165,7 +165,7 @@ class MenuPrincipal {
                             .clickable(
                                 onClick = {colorTexto = Color.Green}
                             ),
-                        color = Color.White)
+                        color = colorTexto)
                 }
             }
 
