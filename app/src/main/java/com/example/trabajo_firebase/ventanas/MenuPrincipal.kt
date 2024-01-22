@@ -2,6 +2,7 @@ package com.example.trabajo_firebase.ventanas
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -11,6 +12,8 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -29,6 +32,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
@@ -36,6 +40,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -129,13 +134,57 @@ class MenuPrincipal {
                     modifier = Modifier
                         .padding(10.dp),
                     colors = ButtonDefaults.buttonColors(
-                        containerColor = Color.Green,
-                        contentColor = Color.Black
+                        containerColor = Color.Black,
+                        contentColor = Color.White
                     )) {
                     Text(text = "Iniciar sesion")
                 }
+                Row {
+
+                }
+
+
 
             }
+            Column(modifier = Modifier.fillMaxSize(),
+                verticalArrangement = Arrangement.Bottom,
+                horizontalAlignment = Alignment.CenterHorizontally) {
+                Text(text = "Inicio de sesion por:", color = Color.White)
+                Row {
+                    RedSocial(imageRes = R.drawable.buscar, modifier = Modifier)
+                    RedSocial(imageRes = R.drawable.facebook, modifier = Modifier)
+                    RedSocial(imageRes = R.drawable.logotipo_de_steam, modifier = Modifier)
+                }
+                Row(modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(), horizontalArrangement = Arrangement.Center) {
+                    Text(text = "Terminos de Uso",
+                        modifier =  Modifier.padding(0.dp,60.dp,0.dp,13.dp)
+                            .clickable {  },
+                        color = Color.White)
+                }
+            }
+
+
+        }
+    }
+    @Composable
+    fun RedSocial(imageRes: Int, modifier: Modifier) {
+        Box(
+            modifier = Modifier
+                .size(56.dp)
+                .background(color = Color.Transparent, shape = CircleShape)
+                .padding(2.dp),
+            contentAlignment = Alignment.Center
+        ) {
+            Image(
+                painter = painterResource(id = imageRes),
+                contentDescription = "Logo",
+                modifier = Modifier
+                    .size(50.dp)
+                    .clip(CircleShape)
+                    .background(color = Color.Transparent, shape = CircleShape)
+            )
         }
     }
     @Preview
