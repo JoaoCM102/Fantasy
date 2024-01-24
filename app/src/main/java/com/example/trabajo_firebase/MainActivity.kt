@@ -10,6 +10,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.trabajo_firebase.Nav.GrafoNavegacion
 import com.example.trabajo_firebase.Rutas.Rutas
 import com.example.trabajo_firebase.ui.theme.Trabajo_FireBaseTheme
 import com.example.trabajo_firebase.ventanas.MenuPrincipal
@@ -24,7 +25,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    MenuPrincipal().MenuPrincipal()
+                    GrafoNavegacion(context = this)
                 }
             }
         }

@@ -1,7 +1,5 @@
 package com.example.trabajo_firebase.ventanas
 
-import android.annotation.SuppressLint
-import androidx.benchmark.perfetto.Row
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -24,10 +22,8 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldColors
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.ComposeCompilerApi
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -45,22 +41,23 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import com.example.trabajo_firebase.R
 import com.example.trabajo_firebase.Rutas.Rutas
 
-class MenuPrincipal {
+
+class Registro () {
     @OptIn(ExperimentalMaterial3Api::class)
-    @SuppressLint("NotConstructor")
     @Composable
-    fun MenuPrincipal(navController: NavHostController) {
+    fun Registro(navController: NavHostController) {
+
+
         var usuario by remember { mutableStateOf("") }
         var contraseña by remember { mutableStateOf("") }
+        var contraseña2 by remember { mutableStateOf("") }
         var contraseñaVisibilidad by remember { mutableStateOf(false) }
         var colorTexto by remember { mutableStateOf(Color.White) }
         Box(
@@ -95,7 +92,8 @@ class MenuPrincipal {
                             )
                         }, trailingIcon = {
                             if (usuario.isNotEmpty()) {
-                                Icon(painterResource(id = R.drawable.ic_close),
+                                Icon(
+                                    painterResource(id = R.drawable.ic_close),
                                     contentDescription = null,
                                     modifier = Modifier.clickable {
                                         usuario = ""
@@ -114,7 +112,7 @@ class MenuPrincipal {
                             onValueChange = { contraseña = it },
                             modifier = Modifier.alpha(0.7f),
                             label = {
-                                Text(text = "Contraseña")
+                                Text(text = "Contraseña de nuevo")
                             },
                             leadingIcon = {
                                 Icon(
@@ -146,24 +144,49 @@ class MenuPrincipal {
                         )
                     }
                 }
-                Spacer(modifier = Modifier.padding(0.dp, 0.dp, 0.dp, 0.dp))
-                Button(
-                    onClick = { /*TODO*/ },
-                    modifier = Modifier
-                        .padding(10.dp)
-                        .width(200.dp),
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = Color.Black,
-                        contentColor = Color.White
-                    )
-                ) {
-                    Text(text = "Iniciar sesion")
+
+                Row(Modifier.padding(0.dp, 0.dp, 0.dp, 40.dp)) {
+                    Column {
+                        TextField(value = contraseña2,
+                            onValueChange = { contraseña2 = it },
+                            modifier = Modifier.alpha(0.7f),
+                            label = {
+                                Text(text = "Contraseña")
+                            },
+                            leadingIcon = {
+                                Icon(
+                                    painterResource(id = R.drawable.ic_action_lock_closed),
+                                    contentDescription = null
+                                )
+                            },
+                            colors = TextFieldDefaults.textFieldColors(
+
+                            ),
+                            trailingIcon = {
+                                if (contraseña2.isNotEmpty()) {
+                                    val visibility = if (contraseñaVisibilidad) {
+                                        painterResource(id = R.drawable.ic_visibility)
+                                    } else {
+                                        painterResource(id = R.drawable.ic_visibility_off)
+                                    }
+                                    Icon(painter = visibility, contentDescription = null,
+                                        modifier = Modifier.clickable {
+                                            contraseñaVisibilidad = !contraseñaVisibilidad
+                                        })
+                                }
+                            },
+                            visualTransformation = if (contraseñaVisibilidad) VisualTransformation.None
+                            else PasswordVisualTransformation(),
+                            keyboardOptions = KeyboardOptions(
+                                keyboardType = KeyboardType.Password
+                            )
+                        )
+                    }
                 }
-
-
+                Spacer(modifier = Modifier.padding(0.dp, 0.dp, 0.dp, 0.dp))
                 Row {
                     Button(
-                        onClick = { navController.navigate(Rutas.Registro.ruta) },
+                        onClick = { },
                         modifier = Modifier
                             .padding(3.dp)
                             .width(200.dp),
@@ -176,16 +199,19 @@ class MenuPrincipal {
                     }
 
                 }
-                Row {
-                    ClickableText(
-                        text = AnnotatedString("Olvidé mi contraseña"),
-                        onClick = { navController.navigate(Rutas.CambiarContraseña.ruta) },
-                        style = TextStyle(
-                            Color.White, textDecoration = TextDecoration.Underline
-
-                        )
+                Button(
+                    onClick = { navController.navigate(Rutas.MenuPrincipal.ruta) },
+                    modifier = Modifier
+                        .padding(10.dp).width(200.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color.Black,
+                        contentColor = Color.White
                     )
+                ) {
+                    Text(text = "Volver")
                 }
+
+
 
 
             }
@@ -194,7 +220,7 @@ class MenuPrincipal {
                 verticalArrangement = Arrangement.Bottom,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Text(text = "Inicio de sesion por:", color = Color.White)
+                Text(text = "Registrarse con:", color = Color.White)
                 Row {
                     RedSocial(imageRes = R.drawable.buscar, modifier = Modifier)
                     RedSocial(imageRes = R.drawable.facebook, modifier = Modifier)
@@ -217,26 +243,5 @@ class MenuPrincipal {
 
 
         }
-    }
-
-}
-
-@Composable
-fun RedSocial(imageRes: Int, modifier: Modifier) {
-    Box(
-        modifier = Modifier
-            .size(56.dp)
-            .background(color = Color.Transparent, shape = CircleShape)
-            .padding(2.dp),
-        contentAlignment = Alignment.Center
-    ) {
-        Image(
-            painter = painterResource(id = imageRes),
-            contentDescription = "Logo",
-            modifier = Modifier
-                .size(50.dp)
-                .clip(CircleShape)
-                .background(color = Color.Transparent, shape = CircleShape)
-        )
     }
 }

@@ -8,5 +8,7 @@ sealed class Rutas(val ruta: String) {
     object AñadirJugador: Rutas("AñadirJugador")
 
     object InformacionJugador: Rutas("InformacionJugador")
+    object CambiarContraseña: Rutas("CambiarContraseña")
+    object Registro: Rutas("Registro")
 
 }
