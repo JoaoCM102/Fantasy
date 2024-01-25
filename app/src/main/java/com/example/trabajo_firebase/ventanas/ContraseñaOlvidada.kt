@@ -1,5 +1,6 @@
 package com.example.trabajo_firebase.ventanas
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -10,6 +11,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -38,15 +40,17 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.trabajo_firebase.R
 import com.example.trabajo_firebase.Rutas.Rutas
 
 class ContraseñaOlvidada() {
+    @SuppressLint("NotConstructor")
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
-    fun ContraseñaOlvidada(navController: NavHostController) {
+    fun ContraseñaOlvidada() {
 
 
         var usuario by remember { mutableStateOf("") }
@@ -58,16 +62,22 @@ class ContraseñaOlvidada() {
             modifier = with(Modifier) {
                 fillMaxSize()
                     .paint(
-                        // Replace with your image id
                         painterResource(id = R.drawable.desktop_wallpaper_55_soccer_field_soccer_pitch),
                         contentScale = ContentScale.FillBounds
                     )
 
             }) {
+            Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Start, verticalAlignment = Alignment.Top) {
+                Icon(painterResource(id = R.drawable.flecha_curva_apuntando_a_la_izquierda), contentDescription = null,
+                    modifier = Modifier.clickable {  }.width(50.dp).height(50.dp))
+            }
             Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
                 Image(
                     painterResource(id = R.drawable.sports_logofootball_logo_game_logo_socccer___hecho_con_postermywall),
-                    contentDescription = null
+                    contentDescription = null,
+                    modifier = Modifier
+                        .height(150.dp)
+                        .width(150.dp)
                 )
             }
             Column(
@@ -76,9 +86,9 @@ class ContraseñaOlvidada() {
             ) {
 
                 Row {
-                    Column {
+                    Column() {
                         TextField(value = usuario, onValueChange = { usuario = it }, label = {
-                            Text(text = "Usuario")
+                            Text(text = "Correo Electronico")
                         }, modifier = Modifier.alpha(0.7f), leadingIcon = {
                             Icon(
                                 painterResource(id = R.drawable.ic_person),
@@ -106,7 +116,7 @@ class ContraseñaOlvidada() {
                             onValueChange = { contraseña = it },
                             modifier = Modifier.alpha(0.7f),
                             label = {
-                                Text(text = "Contraseña de nuevo")
+                                Text(text = "Nueva Contraseña")
                             },
                             leadingIcon = {
                                 Icon(
@@ -145,7 +155,7 @@ class ContraseñaOlvidada() {
                             onValueChange = { contraseña2 = it },
                             modifier = Modifier.alpha(0.7f),
                             label = {
-                                Text(text = "Contraseña")
+                                Text(text = "Repetir Contraseña")
                             },
                             leadingIcon = {
                                 Icon(
@@ -189,21 +199,11 @@ class ContraseñaOlvidada() {
                             contentColor = Color.White
                         )
                     ) {
-                        Text(text = "Cambiar Contraseña")
+                        Text(text = "Cambiar ")
                     }
 
                 }
-                Button(
-                    onClick = { navController.navigate(Rutas.MenuPrincipal.ruta) },
-                    modifier = Modifier
-                        .padding(10.dp).width(200.dp),
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = Color.Black,
-                        contentColor = Color.White
-                    )
-                ) {
-                    Text(text = "Volver")
-                }
+
 
 
 
@@ -214,12 +214,6 @@ class ContraseñaOlvidada() {
                 verticalArrangement = Arrangement.Bottom,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Text(text = "Volver a Iniciar sesión con:", color = Color.White)
-                Row {
-                    RedSocial(imageRes = R.drawable.buscar, modifier = Modifier)
-                    RedSocial(imageRes = R.drawable.facebook, modifier = Modifier)
-                    RedSocial(imageRes = R.drawable.logotipo_de_steam, modifier = Modifier)
-                }
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -238,4 +232,9 @@ class ContraseñaOlvidada() {
 
         }
     }
+}
+@Preview
+@Composable
+fun ver(){
+    ContraseñaOlvidada().ContraseñaOlvidada()
 }

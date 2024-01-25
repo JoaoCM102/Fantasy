@@ -18,17 +18,17 @@ fun GrafoNavegacion(context: Context){
 
         // "URL" -> Composable
         composable(Rutas.MenuPrincipal.ruta){
-            MenuPrincipal().MenuPrincipal(navController = navController)
+            MenuPrincipal().MenuPrincipal()
         }
 
         composable(Rutas.AñadirJugador.ruta){
             //AñadirJugador(navController = navController)
         }
         composable(Rutas.CambiarContraseña.ruta){
-            ContraseñaOlvidada().ContraseñaOlvidada(navController = navController)
+            ContraseñaOlvidada().ContraseñaOlvidada()
         }
         composable(Rutas.Registro.ruta){
-            Registro().Registro(navController = navController)
+            Registro().Registro()
         }
 
 

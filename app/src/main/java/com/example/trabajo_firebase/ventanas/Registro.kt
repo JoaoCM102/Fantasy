@@ -1,5 +1,6 @@
 package com.example.trabajo_firebase.ventanas
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -42,6 +43,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
@@ -50,9 +52,10 @@ import com.example.trabajo_firebase.Rutas.Rutas
 
 
 class Registro () {
+    @SuppressLint("NotConstructor")
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
-    fun Registro(navController: NavHostController) {
+    fun Registro() {
 
 
         var usuario by remember { mutableStateOf("") }
@@ -200,9 +203,10 @@ class Registro () {
 
                 }
                 Button(
-                    onClick = { navController.navigate(Rutas.MenuPrincipal.ruta) },
+                    onClick = { },
                     modifier = Modifier
-                        .padding(10.dp).width(200.dp),
+                        .padding(10.dp)
+                        .width(200.dp),
                     colors = ButtonDefaults.buttonColors(
                         containerColor = Color.Black,
                         contentColor = Color.White
@@ -244,4 +248,9 @@ class Registro () {
 
         }
     }
+}
+@Preview
+@Composable
+fun ver2(){
+    Registro().Registro()
 }
