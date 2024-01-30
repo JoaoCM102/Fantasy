@@ -31,10 +31,11 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.example.trabajo_firebase.R
 
 @Composable
-fun Ajustes() {
+fun Ajustes(navController : NavController) {
     var sliderValue by remember { mutableStateOf(0f) }
 
     Box(modifier = with(Modifier) {
@@ -114,8 +115,4 @@ fun Ajustes() {
 
 }
 
-@Composable
-@Preview
-fun verboxuno() {
-    Ajustes()
-}
+

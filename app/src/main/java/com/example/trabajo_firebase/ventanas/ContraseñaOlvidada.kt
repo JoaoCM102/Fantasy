@@ -42,6 +42,7 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import com.example.trabajo_firebase.R
 import com.example.trabajo_firebase.Rutas.Rutas
@@ -50,7 +51,7 @@ class ContraseñaOlvidada() {
     @SuppressLint("NotConstructor")
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
-    fun ContraseñaOlvidada() {
+    fun ContraseñaOlvidada(navController : NavController) {
 
 
         var usuario by remember { mutableStateOf("") }
@@ -233,8 +234,4 @@ class ContraseñaOlvidada() {
         }
     }
 }
-@Preview
-@Composable
-fun ver(){
-    ContraseñaOlvidada().ContraseñaOlvidada()
-}
+

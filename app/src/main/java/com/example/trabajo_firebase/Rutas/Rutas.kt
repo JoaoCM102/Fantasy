@@ -5,7 +5,10 @@ sealed class Rutas(val ruta: String) {
         Crear e identificar las rutas (diferentes pantallas) de nuestra app
      */
     object MenuPrincipal: Rutas("MenuPrincipal")
-    object AñadirJugador: Rutas("AñadirJugador")
+
+    object MenuInicio: Rutas("MenuInicio")
+
+    object Ajustes: Rutas("Ajustes")
 
     object InformacionJugador: Rutas("InformacionJugador")
     object CambiarContraseña: Rutas("CambiarContraseña")

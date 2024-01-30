@@ -51,7 +51,7 @@ import com.example.trabajo_firebase.R
 import com.example.trabajo_firebase.Rutas.Rutas
 
 
-class Registro () {
+class Registro (navController : NavController) {
     @SuppressLint("NotConstructor")
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
@@ -248,9 +248,4 @@ class Registro () {
 
         }
     }
-}
-@Preview
-@Composable
-fun ver2(){
-    Registro().Registro()
 }

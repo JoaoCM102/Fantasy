@@ -53,11 +53,11 @@ import androidx.navigation.NavHostController
 import com.example.trabajo_firebase.R
 import com.example.trabajo_firebase.Rutas.Rutas
 
-class MenuPrincipal {
+
     @OptIn(ExperimentalMaterial3Api::class)
     @SuppressLint("NotConstructor")
     @Composable
-    fun MenuPrincipal() {
+    fun MenuPrincipal(navController : NavController) {
         var usuario by remember { mutableStateOf("") }
         var contraseña by remember { mutableStateOf("") }
         var contraseñaVisibilidad by remember { mutableStateOf(false) }
@@ -147,7 +147,7 @@ class MenuPrincipal {
                 }
                 Spacer(modifier = Modifier.padding(0.dp, 0.dp, 0.dp, 0.dp))
                 Button(
-                    onClick = { /*TODO*/ },
+                    onClick = { navController.navigate(Rutas.MenuInicio.ruta) },
                     modifier = Modifier
                         .padding(10.dp)
                         .width(200.dp),
@@ -162,7 +162,7 @@ class MenuPrincipal {
 
                 Row {
                     Button(
-                        onClick = { },
+                        onClick = { navController.navigate(Rutas.Registro.ruta) },
                         modifier = Modifier
                             .padding(3.dp)
                             .width(200.dp),
@@ -178,7 +178,7 @@ class MenuPrincipal {
                 Row {
                     ClickableText(
                         text = AnnotatedString("Olvidé mi contraseña"),
-                        onClick = { },
+                        onClick = { navController.navigate(Rutas.CambiarContraseña.ruta) },
                         style = TextStyle(
                             Color.White, textDecoration = TextDecoration.Underline
 
@@ -218,7 +218,6 @@ class MenuPrincipal {
         }
     }
 
-}
 
 @Composable
 fun RedSocial(imageRes: Int, modifier: Modifier) {

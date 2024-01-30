@@ -25,7 +25,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    GrafoNavegacion(context = this)
+                    GrafoNavegacion()
                 }
             }
         }

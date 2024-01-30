@@ -8,9 +8,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -25,11 +23,13 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.example.trabajo_firebase.R
+import com.example.trabajo_firebase.Rutas.Rutas
 
 class MenuInicio {
     @Composable
-    fun inicio(){
+    fun Inicio(navController : NavController){
         Box(modifier = with(Modifier) {
             fillMaxSize()
                 .paint(
@@ -48,22 +48,17 @@ class MenuInicio {
                         .height(150.dp)
                         .width(150.dp)
                 )
-                cajas(imagen = R.drawable.caramessi,300,120,"Simular Partido")
-                cajas(imagen = R.drawable.equipo,300,120,"Plantilla")
-                cajas(imagen = R.drawable.investigacion,300,120,"Mercado de fichajes")
-                cajas(imagen = R.drawable.ajuste,300,120,"Ajustes")
+                cajas(imagen = R.drawable.caramessi,300,120,"Simular Partido") {}
+                cajas(imagen = R.drawable.equipo,300,120,"Plantilla") {}
+                cajas(imagen = R.drawable.investigacion,300,120,"Mercado de fichajes") {}
+                cajas(imagen = R.drawable.ajuste,300,120,"Ajustes",{})
             }
         }
     }
-    @Composable
-    @Preview
-    fun verbox(){
-        MenuInicio().inicio()
-    }
 
     @Composable
-    fun cajas(imagen: Int,with: Int,height : Int,Texto : String){
-        Box(modifier = Modifier.clickable {  }
+    fun cajas(imagen: Int, with: Int, height: Int, Texto: String, accion: () -> Unit){
+        Box(modifier = Modifier.clickable { accion }
             .background(Color.White.copy(alpha = 0.5f))
             .width(with.dp)
             .height(height.dp)
@@ -79,6 +74,6 @@ class MenuInicio {
     @Composable
     @Preview
     fun verboxuno(){
-        MenuInicio().cajas(imagen = R.drawable.caramessi,300,150,"")
+        MenuInicio().cajas(imagen = R.drawable.caramessi,300,150,"") {}
     }
 }
