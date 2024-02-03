@@ -48,17 +48,17 @@ class MenuInicio {
                         .height(150.dp)
                         .width(150.dp)
                 )
-                cajas(imagen = R.drawable.caramessi,300,120,"Simular Partido") {}
-                cajas(imagen = R.drawable.equipo,300,120,"Plantilla") {}
-                cajas(imagen = R.drawable.investigacion,300,120,"Mercado de fichajes") {}
-                cajas(imagen = R.drawable.ajuste,300,120,"Ajustes",{})
+                cajas(imagen = R.drawable.caramessi,300,120,"Simular Partido",accion = {navController.navigate(Rutas.Ajustes.ruta)})
+                cajas(imagen = R.drawable.equipo,300,120,"Plantilla",accion = {navController.navigate(Rutas.Ajustes.ruta)})
+                cajas(imagen = R.drawable.investigacion,300,120,"Mercado de fichajes",accion = {navController.navigate(Rutas.Ajustes.ruta)})
+                cajas(imagen = R.drawable.ajuste,300,120,"Ajustes", accion = {navController.navigate(Rutas.Ajustes.ruta)})
             }
         }
     }
 
     @Composable
-    fun cajas(imagen: Int, with: Int, height: Int, Texto: String, accion: () -> Unit){
-        Box(modifier = Modifier.clickable { accion }
+    fun cajas(imagen: Int, with: Int, height: Int, Texto: String,accion : () -> Unit){
+        Box(modifier = Modifier.clickable { accion() }
             .background(Color.White.copy(alpha = 0.5f))
             .width(with.dp)
             .height(height.dp)
@@ -71,9 +71,6 @@ class MenuInicio {
             }
         }
     }
-    @Composable
-    @Preview
-    fun verboxuno(){
-        MenuInicio().cajas(imagen = R.drawable.caramessi,300,150,"") {}
-    }
+
+
 }

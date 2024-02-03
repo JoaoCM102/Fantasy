@@ -30,7 +30,7 @@ fun GrafoNavegacion(){
             ContraseñaOlvidada().ContraseñaOlvidada(navController = navController)
         }
         composable(Rutas.Registro.ruta){
-            Registro(navController = navController)
+            Registro().Registro(navController = navController)
         }
         composable(Rutas.MenuInicio.ruta){
             MenuInicio().Inicio(navController = navController)

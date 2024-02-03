@@ -48,18 +48,22 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import com.example.trabajo_firebase.R
 import com.example.trabajo_firebase.Rutas.Rutas
+import com.example.trabajo_firebase.firebase.login
 
 
-    @OptIn(ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalMaterial3Api::class)
     @SuppressLint("NotConstructor")
     @Composable
-    fun MenuPrincipal(navController : NavController) {
-        var usuario by remember { mutableStateOf("") }
-        var contraseña by remember { mutableStateOf("") }
+    fun MenuPrincipal(
+        navController : NavController,
+        viewModel: login = androidx.lifecycle.viewmodel.compose.viewModel()) {
+        var usuario by remember { mutableStateOf("admin@gmail.com") }
+        var contraseña by remember { mutableStateOf("123456") }
         var contraseñaVisibilidad by remember { mutableStateOf(false) }
         var colorTexto by remember { mutableStateOf(Color.White) }
         Box(
@@ -147,7 +151,10 @@ import com.example.trabajo_firebase.Rutas.Rutas
                 }
                 Spacer(modifier = Modifier.padding(0.dp, 0.dp, 0.dp, 0.dp))
                 Button(
-                    onClick = { navController.navigate(Rutas.MenuInicio.ruta) },
+                    onClick = {
+                        viewModel.loginMeter("$usuario",
+                            "$contraseña")
+                        {navController.navigate(Rutas.MenuInicio.ruta) }},
                     modifier = Modifier
                         .padding(10.dp)
                         .width(200.dp),

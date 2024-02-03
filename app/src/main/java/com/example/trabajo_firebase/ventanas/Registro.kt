@@ -45,17 +45,20 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import com.example.trabajo_firebase.R
 import com.example.trabajo_firebase.Rutas.Rutas
+import com.example.trabajo_firebase.firebase.login
 
 
-class Registro (navController : NavController) {
+class Registro () {
     @SuppressLint("NotConstructor")
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
-    fun Registro() {
+    fun Registro(navController : NavController,
+                 viewModel: login = androidx.lifecycle.viewmodel.compose.viewModel()) {
 
 
         var usuario by remember { mutableStateOf("") }
@@ -189,7 +192,11 @@ class Registro (navController : NavController) {
                 Spacer(modifier = Modifier.padding(0.dp, 0.dp, 0.dp, 0.dp))
                 Row {
                     Button(
-                        onClick = { },
+                        onClick = { if (contraseña.equals(contraseña2)){
+                            viewModel.crearUsuario(usuario,contraseña){
+                                navController.navigate(Rutas.MenuInicio.ruta)
+                            }
+                        } },
                         modifier = Modifier
                             .padding(3.dp)
                             .width(200.dp),
