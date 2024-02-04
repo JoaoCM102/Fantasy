@@ -1,5 +1,6 @@
 package com.example.trabajo_firebase.ventanas
 
+import android.content.Context
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -32,10 +33,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.example.trabajo_firebase.Música.ExoPlayerViewModel
 import com.example.trabajo_firebase.R
 
 @Composable
-fun Ajustes(navController : NavController) {
+fun Ajustes(navController : NavController, context : Context, exoPlayerViewModel: ExoPlayerViewModel) {
     var sliderValue by remember { mutableStateOf(0f) }
 
     Box(modifier = with(Modifier) {
@@ -76,8 +78,9 @@ fun Ajustes(navController : NavController) {
                         value = sliderValue,
                         onValueChange = { newValue ->
                             sliderValue = newValue
+                            exoPlayerViewModel.cambiarVolumen(context, newValue)
                         },
-                        valueRange = 0f..100f,
+                        valueRange = 0f..1f,
                         steps = 100
                         , colors = SliderDefaults.colors(
                             thumbColor = Color(63, 81, 181, 255),

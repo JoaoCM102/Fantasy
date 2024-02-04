@@ -1,6 +1,7 @@
 package com.example.trabajo_firebase.ventanas
 
 import android.annotation.SuppressLint
+import android.content.Context
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -58,7 +59,8 @@ class Registro () {
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
     fun Registro(navController : NavController,
-                 viewModel: login = androidx.lifecycle.viewmodel.compose.viewModel()) {
+                 viewModel: login = androidx.lifecycle.viewmodel.compose.viewModel(), context : Context
+    ) {
 
 
         var usuario by remember { mutableStateOf("") }

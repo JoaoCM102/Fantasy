@@ -8,6 +8,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.trabajo_firebase.Nav.GrafoNavegacion
 import com.example.trabajo_firebase.firebase.ViewModelFirebase
 import com.example.trabajo_firebase.ui.theme.Trabajo_FireBaseTheme
 
@@ -23,6 +24,7 @@ class MainActivity : ComponentActivity() {
                 ) {
                     val viewModel: ViewModelFirebase = viewModel()
                     viewModel.crearListener()
+                    GrafoNavegacion(context = this)
                 }
             }
         }

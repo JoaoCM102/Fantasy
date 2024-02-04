@@ -1,6 +1,7 @@
 package com.example.trabajo_firebase.ventanas
 
 import android.annotation.SuppressLint
+import android.content.Context
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -44,6 +45,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
+import com.example.trabajo_firebase.Música.ExoPlayerViewModel
 import com.example.trabajo_firebase.R
 import com.example.trabajo_firebase.Rutas.Rutas
 
@@ -51,7 +53,7 @@ class ContraseñaOlvidada() {
     @SuppressLint("NotConstructor")
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
-    fun ContraseñaOlvidada(navController : NavController) {
+    fun ContraseñaOlvidada(navController : NavController, context : Context, exoPlayerViewModel: ExoPlayerViewModel) {
 
 
         var usuario by remember { mutableStateOf("") }

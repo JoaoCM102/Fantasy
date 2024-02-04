@@ -1,5 +1,6 @@
 package com.example.trabajo_firebase.ventanas
 
+import android.content.Context
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -24,12 +25,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.example.trabajo_firebase.Música.ExoPlayerViewModel
 import com.example.trabajo_firebase.R
 import com.example.trabajo_firebase.Rutas.Rutas
 
 class MenuInicio {
     @Composable
-    fun Inicio(navController : NavController){
+    fun Inicio(navController : NavController, context : Context, exoPlayerViewModel: ExoPlayerViewModel){
         Box(modifier = with(Modifier) {
             fillMaxSize()
                 .paint(
