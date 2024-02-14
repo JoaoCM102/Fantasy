@@ -59,7 +59,9 @@ import com.example.trabajo_firebase.Música.ExoPlayerViewModel
 import com.example.trabajo_firebase.R
 import com.example.trabajo_firebase.Rutas.Rutas
 import com.example.trabajo_firebase.firebase.login
-
+import com.rizzi.bouquet.ResourceType
+import com.rizzi.bouquet.VerticalPDFReader
+import com.rizzi.bouquet.rememberVerticalPdfReaderState
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -69,6 +71,7 @@ fun MenuPrincipal(
     navController: NavController,
     viewModel: login = androidx.lifecycle.viewmodel.compose.viewModel(), context: Context, exoPlayerViewModel: ExoPlayerViewModel
 ) {
+
     var usuario by remember { mutableStateOf("admin@gmail.com") }
     var contraseña by remember { mutableStateOf("123456") }
     var contraseñaVisibilidad by remember { mutableStateOf(false) }
@@ -77,10 +80,7 @@ fun MenuPrincipal(
     val exoPlayerViewModel: ExoPlayerViewModel = exoPlayerViewModel
 
 
-    LaunchedEffect(Unit) {
-        exoPlayerViewModel.crearExoPlayer(contexto)
-        exoPlayerViewModel.hacerSonarMusica(contexto)
-    }
+
     Box(
         modifier = with(Modifier) {
             fillMaxSize()
@@ -234,7 +234,13 @@ fun MenuPrincipal(
                     modifier = Modifier
                         .padding(0.dp, 60.dp, 0.dp, 13.dp)
                         .clickable(
-                            onClick = { colorTexto = Color.Green }
+                            onClick = {
+                                colorTexto = Color.Green
+                                navController.navigate(Rutas.Terminos.ruta)
+
+
+
+                            }
                         ),
                     color = colorTexto)
             }
