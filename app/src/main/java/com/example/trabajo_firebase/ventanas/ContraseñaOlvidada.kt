@@ -226,7 +226,9 @@ class ContraseñaOlvidada() {
                         modifier = Modifier
                             .padding(0.dp, 60.dp, 0.dp, 13.dp)
                             .clickable(
-                                onClick = { colorTexto = Color.Green }
+                                onClick = { colorTexto = Color.Green
+                                    navController.navigate(Rutas.Terminos.ruta)}
+
                             ),
                         color = colorTexto)
                 }

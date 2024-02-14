@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -15,6 +16,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Slider
 import androidx.compose.material3.SliderDefaults
 import androidx.compose.material3.Text
@@ -29,17 +31,19 @@ import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.trabajo_firebase.Música.ExoPlayerViewModel
 import com.example.trabajo_firebase.R
-
+import com.example.trabajo_firebase.Rutas.Rutas
 @Composable
-fun Ajustes(navController : NavController, context : Context, exoPlayerViewModel: ExoPlayerViewModel) {
+fun Ajustes(navController: NavController, context: Context, exoPlayerViewModel: ExoPlayerViewModel) {
     var sliderValue by remember { mutableStateOf(0f) }
-
     Box(modifier = with(Modifier) {
         fillMaxSize()
             .paint(
@@ -48,60 +52,68 @@ fun Ajustes(navController : NavController, context : Context, exoPlayerViewModel
                 contentScale = ContentScale.FillBounds
             )
 
-    }){
-        Box(modifier = Modifier
-            .clickable { }
-            .background(Color.White.copy(alpha = 0.7f))
-            .width(300.dp)
-            .height(500.dp)
-            .align(Alignment.Center)
+    }) {
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(Color.White.copy(alpha = 0.8f))
         ) {
             Column(
-                verticalArrangement = Arrangement.SpaceAround,
-                horizontalAlignment = Alignment.CenterHorizontally,
-
-
-                modifier = Modifier.fillMaxSize()
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(16.dp),
+                verticalArrangement = Arrangement.SpaceEvenly,
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                //Item y texto
-                Row(modifier = Modifier.fillMaxWidth().padding(horizontal = 10.dp), horizontalArrangement = Arrangement.Center, verticalAlignment = Alignment.CenterVertically) {
-                    Text(text = "Ajustes")
+                Text(text = "Ajustes", style = TextStyle(fontSize = 30.sp, fontWeight = FontWeight.Bold))
 
+                Spacer(modifier = Modifier.height(16.dp))
 
-                }
+                Text(text = "Cambiar Volumen", style = TextStyle( fontSize = 24.sp, fontWeight = FontWeight.Bold))
+                Slider(
+                    value = sliderValue,
+                    onValueChange = { newValue ->
+                        sliderValue = newValue
+                        exoPlayerViewModel.cambiarVolumen(context, newValue)
+                    },
+                    valueRange = 0f..1f,
+                    colors = SliderDefaults.colors(
+                        thumbColor = Color(0, 0, 0, 255),
+                        activeTickColor = Color(0, 0, 0, 255),
+                        activeTrackColor = Color(0, 0, 0, 255),
+                        inactiveTickColor = Color.Gray,
+                        inactiveTrackColor = Color.Gray
+                    ),
+                    modifier = Modifier.padding(horizontal = 10.dp)
+                )
 
-                //Item y texto
-                Row(modifier = Modifier.fillMaxWidth().padding(horizontal = 10.dp), horizontalArrangement = Arrangement.Center, verticalAlignment = Alignment.CenterVertically) {
-                    Text(text = "Volumen")
-                    //Volumen
-                    Slider(modifier = Modifier.padding(horizontal = 10.dp),
-                        value = sliderValue,
-                        onValueChange = { newValue ->
-                            sliderValue = newValue
-                            exoPlayerViewModel.cambiarVolumen(context, newValue)
-                        },
-                        valueRange = 0f..1f,
-                        steps = 100
-                        , colors = SliderDefaults.colors(
-                            thumbColor = Color(63, 81, 181, 255),
-                            activeTickColor = Color(63, 81, 181, 255),
-                            activeTrackColor =Color(63, 81, 181, 255),
-                            inactiveTickColor = Color.Gray,
-                            inactiveTrackColor = Color.Gray
-                        )
-                    )
-
-                }
-
-
-
-
-                //Último
                 Button(
-                    onClick = { },
+                    onClick = { exoPlayerViewModel.CambiarCancion(context) },
                     modifier = Modifier
-                        .padding(3.dp)
-                        .width(200.dp),
+                        .padding(8.dp)
+                        .width(200.dp)
+                        .height(50.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color.Black,
+                        contentColor = Color.White
+                    )
+                ) {
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Text(text = "Siguiente Canción")
+                        Spacer(modifier = Modifier.width(8.dp))
+                        Icon(
+                            painter = painterResource(id = R.drawable.baseline_skip_next_24),
+                            contentDescription = null
+                        )
+                    }
+                }
+
+                Button(
+                    onClick = { navController.navigate(Rutas.MenuInicio.ruta) },
+                    modifier = Modifier
+                        .padding(8.dp)
+                        .width(200.dp)
+                        .height(50.dp),
                     colors = ButtonDefaults.buttonColors(
                         containerColor = Color.Black,
                         contentColor = Color.White
@@ -109,13 +121,7 @@ fun Ajustes(navController : NavController, context : Context, exoPlayerViewModel
                 ) {
                     Text(text = "Volver")
                 }
-
             }
         }
     }
-
-
-
 }
-
-

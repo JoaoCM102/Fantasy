@@ -32,8 +32,26 @@ class ExoPlayerViewModel : ViewModel() {
     // Lista de canciones disponibles
     private val listaCanciones = listOf(
 
-        Cancion(R.raw.fifa14disclosureforyou),
-        Cancion(R.raw.fifa14churchesgun)
+        Cancion(R.raw.uno),
+        Cancion(R.raw.dos),
+        Cancion(R.raw.tres),
+        Cancion(R.raw.cuatro),
+        Cancion(R.raw.cinco),
+        Cancion(R.raw.seis),
+        Cancion(R.raw.siete),
+        Cancion(R.raw.ocho),
+        Cancion(R.raw.nueve),
+        Cancion(R.raw.diez),
+        Cancion(R.raw.once),
+        Cancion(R.raw.doce),
+        Cancion(R.raw.trece),
+        Cancion(R.raw.catorce),
+        Cancion(R.raw.quince),
+        Cancion(R.raw.dieciseis),
+        Cancion(R.raw.diecisiete),
+        Cancion(R.raw.dieciocho),
+        Cancion(R.raw.diecinueve),
+        Cancion(R.raw.veinte)
 
     )
     // Estado actual de la canción que se está reproduciendo

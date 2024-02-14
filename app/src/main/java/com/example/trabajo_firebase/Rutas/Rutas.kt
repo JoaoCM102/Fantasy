@@ -13,5 +13,6 @@ sealed class Rutas(val ruta: String) {
     object InformacionJugador: Rutas("InformacionJugador")
     object CambiarContraseña: Rutas("CambiarContraseña")
     object Registro: Rutas("Registro")
+    object Terminos:Rutas("Terminos")
 
 }
