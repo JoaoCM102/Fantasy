@@ -50,9 +50,9 @@ class MenuInicio {
                         .height(150.dp)
                         .width(150.dp)
                 )
-                cajas(imagen = R.drawable.caramessi,300,120,"Simular Partido",accion = {navController.navigate(Rutas.Ajustes.ruta)})
-                cajas(imagen = R.drawable.equipo,300,120,"Plantilla",accion = {navController.navigate(Rutas.Ajustes.ruta)})
-                cajas(imagen = R.drawable.investigacion,300,120,"Mercado de fichajes",accion = {navController.navigate(Rutas.Ajustes.ruta)})
+                cajas(imagen = R.drawable.caramessi,300,120,"Noticias",accion = {navController.navigate(Rutas.Noticias.ruta)})
+                cajas(imagen = R.drawable.equipo,300,120,"Subir Noticia",accion = {navController.navigate(Rutas.SubirNoticia.ruta)})
+                cajas(imagen = R.drawable.investigacion,300,120,"Perfil",accion = {navController.navigate(Rutas.Ajustes.ruta)})
                 cajas(imagen = R.drawable.ajuste,300,120,"Ajustes", accion = {navController.navigate(Rutas.Ajustes.ruta)})
             }
         }

@@ -12,7 +12,10 @@ import com.example.trabajo_firebase.ventanas.Ajustes
 import com.example.trabajo_firebase.ventanas.ContraseñaOlvidada
 import com.example.trabajo_firebase.ventanas.MenuInicio
 import com.example.trabajo_firebase.ventanas.MenuPrincipal
+import com.example.trabajo_firebase.ventanas.NoticiaDetallada
+import com.example.trabajo_firebase.ventanas.Noticias
 import com.example.trabajo_firebase.ventanas.Registro
+import com.example.trabajo_firebase.ventanas.subirNoticia
 
 @Composable
 fun GrafoNavegacion(context: Context){
@@ -37,6 +40,16 @@ fun GrafoNavegacion(context: Context){
         }
         composable(Rutas.MenuInicio.ruta){
             MenuInicio().Inicio(navController = navController, context =  context, exoPlayerViewModel = exoPlayerViewModel)
+        }
+
+        composable(Rutas.Noticias.ruta){
+            Noticias(navController = navController)
+        }
+        composable(Rutas.Noticia.ruta){
+            NoticiaDetallada(navController = navController)
+        }
+        composable(Rutas.SubirNoticia.ruta){
+            subirNoticia(navController = navController)
         }
 
 

@@ -2,8 +2,7 @@ package com.example.trabajo_firebase.firebase
 
 import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.ViewModel
-
-import com.example.trabajo_firebase.modelo.jugador
+import com.example.trabajo_firebase.modelo.jugadores
 import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -18,14 +17,14 @@ class ViewModelFirebase : ViewModel() {
 
     // Lista de toda la grifa, que la actualizará Firebase.
     private var _listaGrifa =
-        MutableStateFlow(mutableStateListOf<jugador>())
+        MutableStateFlow(mutableStateListOf<jugadores>())
     var listaGrifa = _listaGrifa.asStateFlow()
 
 
     fun crearListener(){
 
         // ponemos la oreja
-        conexion.collection("Grifa").addSnapshotListener{
+        conexion.collection("jugadores").addSnapshotListener{
                 datos, error ->
             if(error == null) {
                 // ¿Que cambios nuevos ha habido en la BBDD?
