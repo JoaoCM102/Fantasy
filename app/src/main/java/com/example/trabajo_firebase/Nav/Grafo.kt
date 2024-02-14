@@ -14,8 +14,11 @@ import com.example.trabajo_firebase.ventanas.Ajustes
 import com.example.trabajo_firebase.ventanas.ContraseñaOlvidada
 import com.example.trabajo_firebase.ventanas.MenuInicio
 import com.example.trabajo_firebase.ventanas.MenuPrincipal
+import com.example.trabajo_firebase.ventanas.NoticiaDetallada
+import com.example.trabajo_firebase.ventanas.Noticias
 import com.example.trabajo_firebase.ventanas.Registro
 import com.example.trabajo_firebase.ventanas.TerminosDeUso
+import com.example.trabajo_firebase.ventanas.subirNoticia
 import com.rizzi.bouquet.ResourceType
 import com.rizzi.bouquet.VerticalPdfReaderState
 import com.rizzi.bouquet.rememberVerticalPdfReaderState
@@ -60,6 +63,15 @@ fun GrafoNavegacion(context: Context){
                 exoPlayerViewModel = exoPlayerViewModel,
                 verticalPdfReaderState = TerminosDeUso
             )
+        }
+        composable(Rutas.Noticia.ruta){
+            NoticiaDetallada(navController = navController)
+        }
+        composable(Rutas.Noticias.ruta){
+            Noticias(navController = navController)
+        }
+        composable(Rutas.SubirNoticia.ruta){
+            subirNoticia(navController = navController)
         }
 
 

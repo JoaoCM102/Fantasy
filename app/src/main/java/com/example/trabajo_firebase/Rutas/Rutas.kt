@@ -15,4 +15,7 @@ sealed class Rutas(val ruta: String) {
     object Registro: Rutas("Registro")
     object Terminos:Rutas("Terminos")
 
+    object Noticias:Rutas("Noticias")
+    object Noticia:Rutas("Noticia")
+    object SubirNoticia:Rutas("SubirNoticia")
 }
