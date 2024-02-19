@@ -18,4 +18,6 @@ sealed class Rutas(val ruta: String) {
     object Noticias:Rutas("Noticias")
     object Noticia:Rutas("Noticia")
     object SubirNoticia:Rutas("SubirNoticia")
+
+    object Perfil:Rutas("Perfil")
 }

@@ -16,6 +16,7 @@ import com.example.trabajo_firebase.ventanas.MenuInicio
 import com.example.trabajo_firebase.ventanas.MenuPrincipal
 import com.example.trabajo_firebase.ventanas.NoticiaDetallada
 import com.example.trabajo_firebase.ventanas.Noticias
+import com.example.trabajo_firebase.ventanas.Perfil
 import com.example.trabajo_firebase.ventanas.Registro
 import com.example.trabajo_firebase.ventanas.TerminosDeUso
 import com.example.trabajo_firebase.ventanas.subirNoticia
@@ -72,6 +73,10 @@ fun GrafoNavegacion(context: Context){
         }
         composable(Rutas.SubirNoticia.ruta){
             subirNoticia(navController = navController)
+        }
+
+        composable(Rutas.Perfil.ruta){
+            Perfil(navController = navController)
         }
 
 
