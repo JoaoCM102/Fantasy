@@ -25,7 +25,6 @@ class MainActivity : ComponentActivity() {
                 ) {
                     val viewModel: ViewModelFirebase = viewModel()
                     viewModel.crearListener()
-
                     GrafoNavegacion(context = this)
 
                 }

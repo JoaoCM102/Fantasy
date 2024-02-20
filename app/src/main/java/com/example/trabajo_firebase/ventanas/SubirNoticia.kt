@@ -21,6 +21,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
@@ -31,11 +32,21 @@ fun subirNoticia(navController : NavController){
     var viewModel : ViewModelFirebaseNoticias = viewModel()
     Column(verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
         var titulo by remember { mutableStateOf("") }
+        var encabezado by remember { mutableStateOf("") }
         var text by remember { mutableStateOf("") }
         Text(text = "Titulo de la noticia", color = Color.Black)
         TextField(
             value = titulo,
             onValueChange = { titulo = it }, modifier = Modifier
+                .fillMaxWidth()
+                .height(100.dp)
+                .padding(10.dp)
+                .border(width = 1.dp, color = Color.Black, shape = RoundedCornerShape(8.dp))
+        )
+        Text(text = "Encabezado de la noticia", color = Color.Black)
+        TextField(
+            value = encabezado,
+            onValueChange = { encabezado = it }, modifier = Modifier
                 .fillMaxWidth()
                 .height(100.dp)
                 .padding(10.dp)

@@ -27,7 +27,8 @@ class login : ViewModel() {
                     if (task.isSuccessful) {
                         Log.d("logueado","log")
                         home()
-                        ViewModelFirebaseNoticias.nombreAutor="${task.result.user?.email?.split("@")?.get(0)}"
+                        Users.valorAutor="${task.result.user?.email?.split("@")?.get(0)}"
+
                     }else{
                         Log.d("logueado","log: ${task.result.toString()}")
                     }
@@ -49,6 +50,7 @@ class login : ViewModel() {
                         home()
                         val displayName =
                             task.result.user?.email?.split("@")?.get(0)
+                            Users.valorAutor="${task.result.user?.email?.split("@")?.get(0)}"
                             createUser(displayName)
                     }else{
                         Log.d("registro","crear ${task.result}")
@@ -75,5 +77,6 @@ class login : ViewModel() {
             }.addOnFailureListener {
                 Log.d("registro","error ${it}")
             }
+
     }
 }

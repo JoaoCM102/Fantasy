@@ -8,6 +8,9 @@ data class Users(
     var numNoticias: Int,
     var valoracion: Float,
 ){
+    companion object {
+        var valorAutor: String = ""
+    }
     constructor() : this(null, "", "", "", 0, 0.0f)
     fun toMap(): MutableMap<String,Any>{
         return mutableMapOf(
