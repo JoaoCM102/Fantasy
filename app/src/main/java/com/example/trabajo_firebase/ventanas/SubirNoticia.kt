@@ -62,7 +62,7 @@ fun subirNoticia(navController : NavController){
                 .border(width = 1.dp, color = Color.Black, shape = RoundedCornerShape(8.dp))
         )
         Button(
-            onClick = { viewModel.anyadirNoticia(titulo,text) },
+            onClick = { viewModel.anyadirNoticia(titulo,text,encabezado) },
             modifier = Modifier
                 .padding(3.dp)
                 .width(200.dp),

@@ -1,5 +1,6 @@
 package com.example.trabajo_firebase.ventanas
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -24,13 +25,12 @@ import com.example.trabajo_firebase.firebase.ViewModelFirebaseNoticias
 import com.example.trabajo_firebase.firebase.clases.Users
 
 
+@SuppressLint("SuspiciousIndentation")
 @Composable
 fun Perfil(navController: NavController){
     var viewModel : ViewModelFirebase = viewModel()
-    DisposableEffect(key1 = viewModel){
         viewModel.crearListener()
-        onDispose { viewModel.borrarListener() }
-    }
+
     var listaGrifaUI = viewModel.listaGrifa.collectAsState().value
     var listaGrifaUINoticia = viewModel.listaGrifa.collectAsState().value
 

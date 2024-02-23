@@ -5,6 +5,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.combinedClickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -27,6 +28,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.material3.SearchBar
 import androidx.compose.material3.Text
 import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -42,6 +44,8 @@ import com.example.trabajo_firebase.R
 import com.example.trabajo_firebase.Rutas.Rutas
 import com.example.trabajo_firebase.firebase.ViewModelFirebaseNoticias
 import com.example.trabajo_firebase.firebase.clases.Noticias
+import com.example.trabajo_firebase.firebase.clases.Users
+import kotlinx.coroutines.flow.asFlow
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
@@ -52,10 +56,14 @@ fun Noticias(navController : NavController){
     var activeSearchBar by remember { mutableStateOf(false) }
     var filtro by remember { mutableStateOf("") }
     var contextMenuPhotoId by rememberSaveable { mutableStateOf<Int?>(null) }
-    DisposableEffect(key1 = viewModelNoticia){
+
+
+
+   DisposableEffect(key1 = viewModelNoticia){
         viewModelNoticia.crearListener()
-        onDispose { viewModelNoticia.borrarListener() }
+       onDispose { viewModelNoticia.borrarListener() }
     }
+
     Column {
         SearchBar(
             modifier = Modifier.fillMaxWidth(),
@@ -64,29 +72,67 @@ fun Noticias(navController : NavController){
             onSearch = { activeSearchBar = false },
             active = activeSearchBar,
             onActiveChange = { activeSearchBar = it }){
-
-        }
-        LazyColumn(){
-            items(listaGrifaUINoticia){noticia->
-                Box(modifier = Modifier
-                    .border(width = 1.dp, color = Color.Black, shape = RoundedCornerShape(8.dp))
-                    .combinedClickable(
-                        onClick = {navController.navigate(Rutas.Noticia.ruta)},
-                        onLongClick = {},
-                    )) {
-                    Row(verticalAlignment = Alignment.CenterVertically) {
-                        Image(painterResource(id = R.drawable.caramessi), contentDescription = null,
-                            Modifier
-                                .width(70.dp)
-                                .height(70.dp))
-                        Column {
-                            Text(text = "Titulo: ${noticia.titulo}")
-                            Text(text = "Autor: ${noticia.autor}")
-                            Text(text = "Texto: ${noticia.texto}")
-                        }
+            val filtrarAutor: List<Noticias> = listaGrifaUINoticia.filter { it.autor.contains(textoSearchBar, true) }
+            for (i in filtrarAutor.indices) {
+                Row(horizontalArrangement = Arrangement.Center) {
+                    Box(modifier = Modifier.clickable { textoSearchBar = filtrarAutor[i].autor }) {
+                        Text(text = filtrarAutor[i].autor, modifier = Modifier
+                            .fillMaxWidth()
+                            .height(100.dp))
                     }
 
                 }
+
+            }
+        }
+        LazyColumn(){
+            items(listaGrifaUINoticia){noticia->
+                if (noticia.autor == textoSearchBar){
+                    Box(modifier = Modifier
+                        .border(width = 1.dp, color = Color.Black, shape = RoundedCornerShape(8.dp))
+                        .combinedClickable(
+                            onClick = {
+                                navController.navigate(Rutas.Noticia.ruta)
+                                Users.idNoticia = listaGrifaUINoticia.indexOf(noticia)
+                            }
+                        )) {
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Image(painterResource(id = R.drawable.caramessi), contentDescription = null,
+                                Modifier
+                                    .width(70.dp)
+                                    .height(70.dp))
+                            Column {
+                                Text(text = "Titulo: ${noticia.titulo}")
+                                Text(text = "Autor: ${noticia.autor}")
+                                Text(text = "Texto: ${noticia.texto}")
+                            }
+                        }
+
+                    }
+                }else if (textoSearchBar == ""){
+                    Box(modifier = Modifier
+                        .border(width = 1.dp, color = Color.Black, shape = RoundedCornerShape(8.dp))
+                        .combinedClickable(
+                            onClick = {
+                                navController.navigate(Rutas.Noticia.ruta)
+                                Users.idNoticia = listaGrifaUINoticia.indexOf(noticia)
+                            }
+                        )) {
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Image(painterResource(id = R.drawable.caramessi), contentDescription = null,
+                                Modifier
+                                    .width(70.dp)
+                                    .height(70.dp))
+                            Column {
+                                Text(text = "Titulo: ${noticia.titulo}")
+                                Text(text = "Autor: ${noticia.autor}")
+                                Text(text = "Texto: ${noticia.texto}")
+                            }
+                        }
+
+                    }
+                }
+
             }
         }
 

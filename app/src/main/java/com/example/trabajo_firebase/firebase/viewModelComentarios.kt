@@ -3,6 +3,7 @@ package com.example.trabajo_firebase.firebase
 import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.ViewModel
 import com.example.trabajo_firebase.firebase.clases.Comentarios
+import com.example.trabajo_firebase.firebase.clases.Noticias
 import com.example.trabajo_firebase.firebase.clases.Users
 import com.example.trabajo_firebase.modelo.jugadores
 import com.google.firebase.firestore.DocumentChange
@@ -23,12 +24,12 @@ class ViewModelComentario : ViewModel() {
     private var _listaGrifa =
         MutableStateFlow(mutableStateListOf<Comentarios>())
     var listaGrifa = _listaGrifa.asStateFlow()
-    private lateinit var listenerReg : ListenerRegistration
 
+    private lateinit var listenerReg : ListenerRegistration
     fun crearListener(){
 
         // ponemos la oreja
-        conexion.collection("comentario").addSnapshotListener{
+        listenerReg = conexion.collection("comentario").addSnapshotListener{
                 datos, error ->
             if(error == null) {
                 // ¿Que cambios nuevos ha habido en la BBDD?
@@ -62,16 +63,19 @@ class ViewModelComentario : ViewModel() {
         listenerReg.remove()
     }
 
-
-
-    fun borrarDroga(drogaAborrar : Users){
-        conexion.collection("users")
-            .document(drogaAborrar.userId).delete()
+    fun borrarComentario(drogaAborrar : Comentarios){
+        conexion.collection("comentario")
+            .document(drogaAborrar.idComentario).delete()
     }
 
-    fun actualizar(drogaCambiar: Users) {
-        conexion.collection("users")
-            .document(drogaCambiar.userId).update("cantidad",5)
+    fun anyadirComentario( cometario: String){
+        var Comentario = Comentarios("comentario",cometario,Users.valorAutor,"",0)
+
+        conexion.collection("comentario").add(Comentario)
+    }
+    fun actualizarComentario(drogaCambiar: Comentarios,nuevoComentario : String) {
+        conexion.collection("comentario")
+            .document(drogaCambiar.idComentario).update("comentario",nuevoComentario)
     }
 
 }

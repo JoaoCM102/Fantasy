@@ -10,6 +10,7 @@ data class Users(
 ){
     companion object {
         var valorAutor: String = ""
+        var idNoticia: Int = 0
     }
     constructor() : this(null, "", "", "", 0, 0.0f)
     fun toMap(): MutableMap<String,Any>{
